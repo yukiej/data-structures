@@ -14,16 +14,15 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    if (count > 0){
-      count--;
+    if ((count - numRemoved) > 0){
+      var result = storage[1 + numRemoved];
       numRemoved++;
-      return storage[1 + numRemoved];
-
+      return result;
     }
   };
 
   someInstance.size = function() {
-    return count; 
+    return count - numRemoved; 
   };
 
   return someInstance;
