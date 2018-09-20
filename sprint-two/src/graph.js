@@ -15,32 +15,48 @@ Graph.prototype.addNode = function(node) {
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
-Graph.prototype.contains = function(node) {
+Graph.prototype.find = function(node) {
   var visitedNodes = [];
   
-  var find = function() {
+  var findHelper = function() {
 
     if (node === this.value) {
-      return true;
+      return this;
     } else {
       visitedNodes.push(this);
       var edges = this.connections;
-      console.log(this, edges); 
       for (var i = 0; i < edges.length; i++) {
         if (! (visitedNodes.includes(edges[i]))) {
-          if (find.call(edges[i])) {
-            return true;
+          var correctNode = findHelper.call(edges[i]);
+          if (correctNode !== undefined) {
+            return correctNode;
           }
         }
       }
     }
-    return false;
+    return undefined;
   };
-  return find.call(this);
+  return findHelper.call(this);
+};
+
+Graph.prototype.contains = function(node) {
+  var foundNode = this.find(node);
+  return foundNode !== undefined;
 };
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
+  var foundNode = this.find(node);
+  if (foundNode !== undefined) {
+    var edges = foundNode.connections;
+    console.log(foundNode); 
+    for (var i = 0; i < edges.length; i++) {
+      var self = edges[i].connections.indexOf(foundNode);
+      edges[i].connections.splice(self, 1);
+    }
+    foundNode.connections = [];
+  }
+  
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
