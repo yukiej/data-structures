@@ -1,19 +1,17 @@
 
 
-// Instantiate a new node
-var Node = function(val) {
+// Instantiate a new graph
+var Graph = function(val) {
   this.connections = [];
   this.value = val;
 };
 
-var Graph = function() {
-  this.nodes = [];
-};
 
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
-  var newNode = new Node(node);
-  this.nodes.push(newNode);
+  var newGraph = new Graph(node);
+  this.connections.push(newGraph);
+  newGraph.connections.push(this);
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
@@ -26,7 +24,7 @@ Graph.prototype.find = function(node) {
       return this;
     } else {
       visitedNodes.push(this);
-      //console.log(this);
+      console.log(this);
       var edges = this.connections;
       for (var i = 0; i < edges.length; i++) {
         if (! (visitedNodes.includes(edges[i]))) {
@@ -43,9 +41,8 @@ Graph.prototype.find = function(node) {
 };
 
 Graph.prototype.contains = function(node) {
-  console.log(this);
-  //change find to loop through the graph array instead of recursing
-  return this.nodes.includes(find(node));
+  var foundNode = this.find(node);
+  return foundNode !== undefined;
 };
 
 // Removes a node from the graph.
