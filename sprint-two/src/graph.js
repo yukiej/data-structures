@@ -16,36 +16,24 @@ Graph.prototype.addNode = function(node) {
   this.nodes.push(newNode);
 };
 
-// Return a boolean value indicating if the value passed to contains is represented in the graph.
-Graph.prototype.find = function(node) {
-  var visitedNodes = [];
-  
-  var findHelper = function() {
 
-    if (node === this.value) {
-      return this;
-    } else {
-      visitedNodes.push(this);
-      //console.log(this);
-      var edges = this.connections;
-      for (var i = 0; i < edges.length; i++) {
-        if (! (visitedNodes.includes(edges[i]))) {
-          var correctNode = findHelper.call(edges[i]);
-          if (correctNode !== undefined) {
-            return correctNode;
-          }
-        }
-      }
+// node is a value
+Graph.prototype.find = function(node) {
+  var nodeList = this.nodes;
+  for (var i = 0; i < nodeList.length; i++) {
+    if (nodeList[i] === node) {
+      return nodeList[i];
     }
-    return undefined;
-  };
-  return findHelper.call(this);
+  }
+  return undefined;
 };
 
+// Return a boolean value indicating if the value passed to contains is represented in the graph.
+//node is a value
 Graph.prototype.contains = function(node) {
   console.log(this);
   //change find to loop through the graph array instead of recursing
-  return this.nodes.includes(find(node));
+  return this.nodes.includes(this.find(node));
 };
 
 // Removes a node from the graph.
