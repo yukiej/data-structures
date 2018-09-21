@@ -41,13 +41,13 @@ var bstMethods = {
       }
       if (value < subtree.value) {
         if (subtree.left === null) {
-          return false
+          return false;
         } else {
           return containsHelp(value, subtree.left);
         }
       } else {
         if (subtree.right === null) {
-          return false
+          return false;
         } else {
           return containsHelp(value, subtree.right);
         }
