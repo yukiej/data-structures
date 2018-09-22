@@ -5,6 +5,14 @@ describe('binarySearchTree', function() {
     binarySearchTree = BinarySearchTree(5);
   });
 
+  it('should have properties named "left", "right", and "value"', function() {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(7);
+    expect(binarySearchTree.value !== null).to.equal(true);
+    expect(binarySearchTree.left.value !== null).to.equal(true);
+    expect(binarySearchTree.right.value !== null).to.equal(true);
+  });
+  
   it('should have methods named "insert", "contains", and "depthFirstLog', function() {
     expect(binarySearchTree.insert).to.be.a('function');
     expect(binarySearchTree.contains).to.be.a('function');
