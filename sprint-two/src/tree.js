@@ -17,6 +17,7 @@ treeMethods.addChild = function(value) {
   this.children.push(childTree);
 };
 
+//target is a value
 treeMethods.contains = function(target) {
   //look at the value of the current and check value
   if (this.value === target) {
@@ -35,7 +36,12 @@ treeMethods.contains = function(target) {
   return false;
 };
 
-
+//outputs a number
+treeMethods.hasChildren = function() {
+  return this.children.length !== 0;
+};
 /*
  * Complexity: What is the time complexity of the above functions?
+ * addChild: O(1)
+ * contains: O(n) because you might have to check the whole tree
  */

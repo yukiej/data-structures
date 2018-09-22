@@ -70,6 +70,9 @@ HashTable.prototype.remove = function(k) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * insert: Best case O(1) if there is no linkedArray, worst case is O(linkedArray.length), which should generally be much smaller than n. 
+ * retrieve: Best case O(1) if there is no linkedArray, worst case is O(linkedArray.length)
+ * remove: O(linkedArray.length) for most cases and O(1) if the key is not in the HashTable
  */
 
 

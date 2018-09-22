@@ -46,6 +46,12 @@ describe('hashTable', function() {
     expect(hashTable.retrieve(v2)).to.equal(v2);
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
+  
+  it('should use LimitedArray as _storage', function() {
+    expect(hashTable._storage.get).to.be.a('function');
+    expect(hashTable._storage.set).to.be.a('function');
+    expect(hashTable._storage.each).to.be.a('function');
+  });
 
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
