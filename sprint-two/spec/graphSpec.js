@@ -68,4 +68,13 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should do nothing if you try to remove a node that is not in the graph', function() {
+    graph.addNode(4);
+    graph.addNode(5);
+    graph.removeNode(7);
+    expect(graph.contains(4)).to.equal(true);
+    expect(graph.contains(5)).to.equal(true);
+    expect(graph.contains(7)).to.equal(false);
+  });
 });
