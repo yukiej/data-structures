@@ -57,11 +57,20 @@ var bstMethods = {
   },
 
   depthFirstLog: function(func) {
-
-  },
-
+      if (this !== window || null){
+        func(this.value);
+        this.depthFirstLog.call(this.left, func);
+        this.depthFirstLog.call(this.right, func);
+      }
+    }
 }
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * If n = number of nodes in tree
+ * Insert: Generally O(logn) if balanced, but worst case O(n)
+ * Contains: Generally O(logn) if balanced, but worst case O(n)
+ * depthFirstLog: Always be O(n) since it has to visit every node
  */
+
+

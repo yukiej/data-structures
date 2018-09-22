@@ -51,5 +51,11 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
+  it('should have head and tail point to same node when there is a single node', function() {
+    linkedList.addToTail(10);
+    expect(linkedList.head.value).to.equal(10);
+    expect(linkedList.tail.value).to.equal(10);
+  });
+
   // add more tests here to test the functionality of linkedList
 });
